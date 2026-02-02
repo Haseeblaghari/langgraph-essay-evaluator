@@ -1,63 +1,104 @@
-📝 LangGraph Essay Evaluator
-An intelligent, multi-agent automated essay grading system. This project uses LangGraph to orchestrate a sequential workflow where different "nodes" (agents) analyze, score, and provide feedback on essays—all running locally via Ollama.
+# 📄 Essay Scoring and Feedback App
 
-🚀 Key Features
-Agentic Workflow: Uses a state-based graph to ensure a structured analysis pipeline.
+This repository contains a **Streamlit-based web app** that allows users to submit essays and receive:  
 
-Deep Analysis: Evaluates essays based on Grammar, Clarity, Structure, Vocabulary, and Coherence.
+- **Score out of 100**  
+- **Detailed feedback**  
+- **Improvement suggestions**  
 
-Dual Input Support:
+The backend uses **LangGraph** with a **LangChain Ollama LLaMA 3.1 model** to analyze essays intelligently.
 
-Text: Paste your essay directly into the UI.
+---
 
-PDF: Upload documents for automatic text extraction.
+## 🧩 Features
 
-Local & Private: Powered by Llama 3.1 via Ollama; no data ever leaves your machine.
+1. **Multiple Submission Options**  
+   - Write or paste essay text directly  
+   - Upload essay as a PDF (text automatically extracted)
 
-Modern UI: Interactive dashboard built with Streamlit.
+2. **AI-Based Essay Analysis**  
+   - Grammar, clarity, structure, vocabulary, and coherence are analyzed  
+   - Provides feedback, score, and improvement suggestions
 
-🏗️ Architecture
-The application follows a directed workflow:
+3. **Interactive UI**  
+   - Built with **Streamlit** for an easy-to-use interface  
+   - Real-time results with a loading spinner while processing
 
-Analyze: Summarizes strengths and weaknesses.
+---
 
-Score: Generates a numerical value (0-100).
+## 🚀 Installation
 
-Suggest: Provides actionable tips based on the analysis and score.
+1. **Clone the repository**  
+```bash
+git clone https://github.com/yourusername/essay-scoring-app.git
+cd essay-scoring-app
+Create a virtual environment (optional but recommended)
 
-🛠️ Tech Stack
-Frameworks: LangGraph, LangChain
+python -m venv venv
+source venv/bin/activate   # Linux/macOS
+venv\Scripts\activate      # Windows
+Install dependencies
 
-LLM: Ollama (Llama 3.1)
-
-Frontend: Streamlit
-
-Parsing: PyPDF2
-
-📋 Prerequisites
-Install Ollama: Download here.
-
-Pull the Model:
-
-Bash
-ollama pull llama3.1
-⚙️ Installation & Setup
-Clone the Repo:
-
-Bash
-git clone https://github.com/your-username/langgraph-essay-evaluator.git
-cd langgraph-essay-evaluator
-Install Dependencies:
-
-Bash
 pip install -r requirements.txt
-Run the App:
+Setup LLM (Ollama LLaMA 3.1)
 
-Bash
+Make sure your Ollama environment is configured properly
+
+Replace the model name in essay_scoring.py if needed
+
+📝 Usage
+Run the Streamlit app
+
 streamlit run app.py
-📂 Project Structure
-app.py: The Streamlit interface and PDF processing logic.
+Open in your browser
 
-essay_scoring.py: The LangGraph definition and node logic.
+The app will run at http://localhost:8501
 
-requirements.txt: List of necessary Python packages.
+Submit an essay
+
+Choose between writing text or uploading PDF
+
+Click Submit Essay to get:
+
+Essay Score
+
+Detailed Feedback
+
+Suggestions for improvement
+
+🛠️ Code Structure
+essay-scoring-app/
+│
+├─ app.py                 # Streamlit front-end interface
+├─ essay_scoring.py       # LangGraph workflow for essay analysis
+├─ requirements.txt       # Python dependencies
+└─ README.md
+essay_scoring.py contains the graph-based workflow:
+
+Analyze node: analyzes essay and generates feedback
+
+Score node: gives numerical score
+
+Suggest node: provides improvement suggestions
+
+app.py handles user interaction via Streamlit and invokes the workflow.
+
+⚡ Technologies Used
+Python
+
+Streamlit
+
+PyPDF2
+
+LangChain Ollama
+
+LangGraph
+
+📈 Future Improvements
+Support for more document formats (DOCX, TXT)
+
+Advanced rubric-based scoring
+
+Multi-language essay support
+
+Deploy as a cloud app
